@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       flash[:info] = "logged in as #{@user.name}"
       redirect_to @user
-      else
+    else
         flash[:danger] = 'invalid email/password combination'
         render 'new'
-        end
-      end
+    end
+  end
       
       def destroy
         session[:user_id] = nil

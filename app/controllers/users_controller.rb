@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      redirect_to user_path(@user)
     else
       render 'new'
     end
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update(user_params)
-    redirect_to root_path , notice: '編集しました'
+    redirect_to user_path(@user) , notice: '編集しました'
   else
     render 'edit'
   end
@@ -33,12 +33,12 @@ end
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email,:profile,:location, :password, :password_confirmation)
   end
   
   def set_user
   @user = User.find(params[:id])
-  unless current_user = @user
+  unless current_user == @user
   redirect_to root_path 
   end
 end

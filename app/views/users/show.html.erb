@@ -1,4 +1,6 @@
 <h1>
   <%= gravatar_for @user %>
-  <%= @user.name %>
+  <%= @user.name %><br>
+  <%= "プロフィール : " + @user.profile %><br>
+  <%= "地域 : " + @user.location %>
 </h1>
