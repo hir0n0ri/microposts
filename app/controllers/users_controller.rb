@@ -25,23 +25,23 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
     redirect_to user_path(@user) , notice: '編集しました'
-  else
+    else
     render 'edit'
+    end
   end
-end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email,:profile,:location, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :profile, :location, :password, :password_confirmation)
   end
   
   def set_user
   @user = User.find(params[:id])
-  unless current_user == @user
+  unless @user == current_user
   redirect_to root_path 
   end
-end
+  end
 end
 
  
