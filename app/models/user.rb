@@ -8,11 +8,17 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :profile , length: { maximum: 200 }
   validates :location, length: { maximum: 50 }
-  has_many :microposts
+  has_many :microposts #, class_name: "Micropost" , foreign_key: "user_id"
   has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
   has_many :following_users, through: :following_relationships, source: :followed
+  
+  
+  has_many :follower_relationships, class_name:  "Relationship",
+                                    foreign_key: "followed_id",
+                                    dependent:   :destroy
+  has_many :follower_users, through: :follower_relationships, source: :follower
   
   
   # 他のユーザーをフォローする

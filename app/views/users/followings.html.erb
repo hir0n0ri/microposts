@@ -19,7 +19,7 @@
       <h3>フォロー一覧</h3>
       <% @users.each do |user| %>
       <%= link_to user.name, user %>
-      <%= link_to gravatar_for(user, size: 30), user %>
+      <%= link_to gravatar_for(user, size: 30), user %><br><br>
     <% end %>
   </div>
 </div>

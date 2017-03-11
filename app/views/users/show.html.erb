@@ -3,6 +3,7 @@
     <section class="user_info">
         <h1>
         <%= gravatar_for @user %>
+      <h1>
         <%= @user.name %><br>
         <%= "地域 : " + @user.location  if @user.location? %>
       </h1>
