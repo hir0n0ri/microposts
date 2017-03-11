@@ -30,6 +30,11 @@ class UsersController < ApplicationController
     render 'edit'
     end
   end
+  
+  def index
+  @users = User.page(params[:page]).per(50)
+  end
+end
 
   private
 
@@ -41,7 +46,6 @@ class UsersController < ApplicationController
   @user = User.find(params[:id])
   unless @user == current_user
   redirect_to root_path 
-  end
   end
 end
 
