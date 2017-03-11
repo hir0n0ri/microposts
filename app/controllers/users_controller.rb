@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   
   def show # 追加
    @user = User.find(params[:id])
+   @microposts = @user.microposts.order(created_at: :desc).page(params[:page]).per(5)
    
-   @microposts = @user.microposts.order(created_at: :desc)
    #@microposts =  Micropost.where(user_id: @user.id).order(created_at: :desc)
   end
   
@@ -42,10 +42,7 @@ class UsersController < ApplicationController
     render 'edit'
     end
   end
-  
-  def index
-  @users = User.page(params[:page]).per(50)
-  end
+
 end
 
   private
